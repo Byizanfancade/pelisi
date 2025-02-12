@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enlaces de Películas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: url('https://img.freepik.com/vector-gratis/fondo-onda-particula-digital-degradado-colorido_483537-1576.jpg?t=st=1739374602~exp=1739378202~hmac=8b3fcd498560ea4e316acb17d9c7c8cafed7837523949b9979e197390a40cadd&w=1060') no-repeat center center fixed;
+            background-size: cover;
+            padding: 50px;
+        }
+        .button {
+            display: block;
+            width: 220px;
+            margin: 10px auto;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+        }
+        .cuevana { background-color: blue; }
+        .pelishd4k { background-color: yellow; color: black; }
+        .pelisplus { background-color: red; }
+        .cinecalidad { background-color: green; }
+        .search-container {
+            margin-top: 20px;
+        }
+        .search-input {
+            padding: 10px;
+            width: 60%;
+            font-size: 16px;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+        .search-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 20px;
+            border: none;
+            background-color: #333;
+            color: white;
+            cursor: pointer;
+        }
+        .footer {
+            position: fixed;
+            bottom: 10px;
+            right: 20px;
+            font-style: italic;
+            font-size: 14px;
+            color: white;
+            opacity: 0.8;
+        }
+        audio {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            visibility: hidden;
+        }
+    </style>
+    <script>
+        function searchMovie(site, homepage) {
+            let query = document.getElementById('search').value.trim();
+            if (query) {
+                window.open(`https://www.google.com/search?q=${query}+site:${site}`, '_blank');
+            } else {
+                window.open(homepage, '_blank');
+            }
+        }
+    </script>
+</head>
+<body>
+    <!-- Música en bucle con volumen al 50% -->
+    <audio src="https://www.youtube.com/watch?v=3KknvxoEMLY" autoplay loop volume="0.5"></audio>
+
+    <h1><span style="color: white;">🎬 Elige tu plataforma de películas 🍿</span></h1>
+    <div class="search-container">
+        <input type="text" id="search" class="search-input" placeholder="🔍 Buscar película...">
+    </div>
+    <a onclick="searchMovie('gx.cuevana3.vip', 'https://gx.cuevana3.vip/')" class="button cuevana">🔵 Cuevana</a>
+    <a onclick="searchMovie('pelishd4k.com', 'https://pelishd4k.com/')" class="button pelishd4k">💛 Pelishd4k</a>
+    <a onclick="searchMovie('pelisplus.in', 'https://pelisplus.in/')" class="button pelisplus">🔴 PelisPlus</a>
+    <a onclick="searchMovie('cinecalidad.rs', 'https://cinecalidad.rs/')" class="button cinecalidad">🟢 Cine Calidad</a>
+
+    <div class="footer">by Izan Fancade</div>
+</body>
+</html>
