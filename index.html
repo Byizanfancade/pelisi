@@ -34,6 +34,9 @@
         .pelishd4k { background-color: yellow; color: black; }
         .pelisplus { background-color: red; }
         .cinecalidad { background-color: green; }
+        .seriesflix { background-color: purple; }
+        .pelis24 { background-color: orange; }
+        .pelispedia { background-color: brown; }
         .search-container {
             margin-top: 20px;
         }
@@ -45,15 +48,6 @@
             border: 1px solid #ccc;
             text-align: center;
         }
-        .search-button {
-            padding: 10px 20px;
-            font-size: 16px;
-            border-radius: 20px;
-            border: none;
-            background-color: #333;
-            color: white;
-            cursor: pointer;
-        }
         .footer {
             position: fixed;
             bottom: 10px;
@@ -63,38 +57,51 @@
             color: white;
             opacity: 0.8;
         }
-        audio {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            visibility: hidden;
+        .emoji-links {
+            position: fixed;
+            bottom: 10px;
+            left: 20px;
+        }
+        .emoji-links a {
+            font-size: 24px;
+            margin: 0 5px;
+            text-decoration: none;
         }
     </style>
     <script>
-        function searchMovie(site, homepage) {
+        function searchMovie(site, url) {
             let query = document.getElementById('search').value.trim();
             if (query) {
-                window.open(`https://www.google.com/search?q=${query}+site:${site}`, '_blank');
+                window.open(`${url}${query}`, '_blank');
             } else {
-                window.open(homepage, '_blank');
+                alert("⚠️ Ingresa algo para buscar 🎬");
             }
         }
     </script>
 </head>
 <body>
-    <!-- Música en bucle con volumen al 50% -->
-    <audio src="https://www.youtube.com/watch?v=3KknvxoEMLY" autoplay loop volume="0.5"></audio>
-
     <h1><span style="color: white;">🎬 Elige tu plataforma de películas 🍿</span></h1>
     <div class="search-container">
         <input type="text" id="search" class="search-input" placeholder="🔍 Buscar película...">
     </div>
-    <a onclick="searchMovie('gx.cuevana3.vip', 'https://gx.cuevana3.vip/')" class="button cuevana">🔵 Cuevana</a>
-    <a onclick="searchMovie('pelishd4k.com', 'https://pelishd4k.com/')" class="button pelishd4k">💛 Pelishd4k</a>
-    <a onclick="searchMovie('pelisplus.in', 'https://pelisplus.in/')" class="button pelisplus">🔴 PelisPlus</a>
-    <a onclick="searchMovie('cinecalidad.rs', 'https://cinecalidad.rs/')" class="button cinecalidad">🟢 Cine Calidad</a>
+    
+    <a onclick="searchMovie('cuevana', 'https://gx.cuevana3.vip/?s=')" class="button cuevana">🔵 Cuevana</a>
+    <a onclick="searchMovie('pelishd4k', 'https://pelishd4k.com/?s=')" class="button pelishd4k">💛 Pelishd4k</a>
+    <a onclick="searchMovie('pelisplus', 'https://wvw.pelisplus.in/?s=')" class="button pelisplus">🔴 PelisPlus</a>
+    <a onclick="searchMovie('cinecalidad', 'https://www.cinecalidad.rs/?s=')" class="button cinecalidad">🟢 Cine Calidad</a>
+    <a onclick="searchMovie('seriesflix', 'https://seriesflix.onl/?s=')" class="button seriesflix">🟣 SeriesFlix</a>
+    <a onclick="searchMovie('pelis24', 'https://ww1.pelis24.blog/?s=')" class="button pelis24">🟠 Pelis24</a>
+    <a onclick="searchMovie('pelispedia', 'https://pelispedia.mov/?s=')" class="button pelispedia">🟤 Pelispedia</a>
+
+    <div class="emoji-links">
+        <a href="https://gx.cuevana3.vip/" style="color: blue;">🔵</a>
+        <a href="https://pelishd4k.com/" style="color: yellow;">💛</a>
+        <a href="https://wvw.pelisplus.in/" style="color: red;">🔴</a>
+        <a href="https://www.cinecalidad.rs/" style="color: green;">🟢</a>
+        <a href="https://seriesflix.onl/" style="color: purple;">🟣</a>
+        <a href="https://ww1.pelis24.blog/" style="color: orange;">🟠</a>
+        <a href="https://pelispedia.mov/" style="color: brown;">🟤</a>
+    </div>
 
     <div class="footer">by Izan Fancade</div>
 </body>
