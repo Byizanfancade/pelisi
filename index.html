@@ -25,18 +25,18 @@
             text-align: center;
             transition: transform 0.2s;
         }
-        .button:hover {
+        .button:hover, .selected {
             transform: scale(1.1);
             box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
             cursor: pointer;
         }
         .cuevana { background-color: blue; }
+        .pelishd4k { background-color: yellow; color: black; }
         .pelisplus { background-color: red; }
         .cinecalidad { background-color: green; }
         .seriesflix { background-color: purple; }
         .pelis24 { background-color: orange; }
         .pelispedia { background-color: brown; }
-        .pelishd4k { background-color: yellow; color: black; }
         .search-container {
             margin-top: 20px;
         }
@@ -66,14 +66,37 @@
     </div>
 
     <a onclick="searchMovie('https://gx.cuevana3.vip/?s=')" class="button cuevana">🔵 Cuevana</a>
+    <a onclick="searchMovie('https://pelishd4k.com/?s=')" class="button pelishd4k">💛 Pelishd4k</a>
     <a onclick="searchMovie('https://wvw.pelisplus.in/?s=')" class="button pelisplus">🔴 PelisPlus</a>
     <a onclick="searchMovie('https://www.cinecalidad.rs/?s=')" class="button cinecalidad">🟢 Cine Calidad</a>
     <a onclick="searchMovie('https://seriesflix.onl/?s=')" class="button seriesflix">🟣 SeriesFlix</a>
     <a onclick="searchMovie('https://ww1.pelis24.blog/?s=')" class="button pelis24">🟠 Pelis24</a>
     <a onclick="searchMovie('https://pelispedia.mov/?s=')" class="button pelispedia">🟤 Pelispedia</a>
-    <a onclick="searchMovie('https://pelishd4k.com/?s=')" class="button pelishd4k">🟡 Pelishd4k</a>
 
-    <a href="https://github.com/Byizanfancade/pelisi" class="footer">by Izan Fancade</a>
+    <div class="footer">by Izan Fancade</div>
 
+    <script>
+        let buttons = document.querySelectorAll('.button');
+        let selectedIndex = 0;
+
+        function updateSelection() {
+            buttons.forEach(btn => btn.classList.remove('selected'));
+            buttons[selectedIndex].classList.add('selected');
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'ArrowDown') {
+                selectedIndex = (selectedIndex + 1) % buttons.length;
+                updateSelection();
+            } else if (event.key === 'ArrowUp') {
+                selectedIndex = (selectedIndex - 1 + buttons.length) % buttons.length;
+                updateSelection();
+            } else if (event.key === 'Enter') {
+                buttons[selectedIndex].click();
+            }
+        });
+
+        updateSelection();
+    </script>
 </body>
 </html>
