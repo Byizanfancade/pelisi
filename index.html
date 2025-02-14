@@ -57,9 +57,31 @@
             color: white;
             opacity: 0.8;
         }
+        .quick-links {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+        .quick-links a {
+            text-decoration: none;
+            font-size: 24px;
+            margin: 5px;
+        }
     </style>
 </head>
 <body>
+    <div class="quick-links">
+        <a href="https://gx.cuevana3.vip/">🔵</a>
+        <a href="https://pelishd4k.com/">💛</a>
+        <a href="https://wvw.pelisplus.in/">🔴</a>
+        <a href="https://www.cinecalidad.rs/">🟢</a>
+        <a href="https://seriesflix.onl/">🟣</a>
+        <a href="https://ww1.pelis24.blog/">🟠</a>
+        <a href="https://pelispedia.mov/">🟤</a>
+    </div>
+
     <h1><span style="color: white;">🎬 Elige tu plataforma de películas 🍿</span></h1>
     <div class="search-container">
         <input type="text" id="search" class="search-input" placeholder="🔍 Buscar película...">
@@ -76,6 +98,15 @@
     <div class="footer">by Izan Fancade</div>
 
     <script>
+        function searchMovie(baseURL) {
+            let query = document.getElementById('search').value.trim();
+            if (query) {
+                window.open(baseURL + encodeURIComponent(query), '_blank');
+            } else {
+                alert('⚠️ Ingresa algo para buscar');
+            }
+        }
+
         let buttons = document.querySelectorAll('.button');
         let selectedIndex = 0;
 
