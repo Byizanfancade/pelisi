@@ -57,6 +57,14 @@
             color: white;
             opacity: 0.8;
         }
+        .footer a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
         .quick-links {
             position: fixed;
             top: 10px;
@@ -95,7 +103,9 @@
     <a onclick="searchMovie('https://ww1.pelis24.blog/?s=')" class="button pelis24">🟠 Pelis24</a>
     <a onclick="searchMovie('https://pelispedia.mov/?s=')" class="button pelispedia">🟤 Pelispedia</a>
 
-    <div class="footer">by Izan Fancade</div>
+    <div class="footer">
+        <a href="https://github.com/Byizanfancade/pelisi" target="_blank">by Izan Fancade</a>
+    </div>
 
     <script>
         function searchMovie(baseURL) {
