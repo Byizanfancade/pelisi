@@ -1,143 +1,418 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Enlaces de Películas</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background: url('https://img.freepik.com/vector-gratis/fondo-onda-particula-digital-degradado-colorido_483537-1576.jpg') no-repeat center center fixed;
-      background-size: cover;
-      padding: 50px;
-    }
-    .button {
-      display: block;
-      width: 220px;
-      margin: 10px auto;
-      padding: 15px;
-      font-size: 18px;
-      font-weight: bold;
-      color: white;
-      text-decoration: none;
-      border-radius: 25px;
-      text-align: center;
-      transition: transform 0.2s;
-    }
-    .button:hover, .selected {
-      transform: scale(1.1);
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
-      cursor: pointer;
-    }
-    .cuevana { background-color: blue; }
-    .pelisplus { background-color: red; }
-    .cinecalidad { background-color: green; }
-    .seriesflix { background-color: purple; }
-    .pelis24 { background-color: orange; }
-    .pelispedia { background-color: brown; }
-    .pelisjuanita { background-color: pink; color: black; }
-    .search-container {
-      margin-top: 20px;
-    }
-    .search-input {
-      padding: 10px;
-      width: 60%;
-      font-size: 16px;
-      border-radius: 20px;
-      border: 1px solid #ccc;
-      text-align: center;
-    }
-    .footer {
-      position: fixed;
-      bottom: 10px;
-      right: 20px;
-      font-style: italic;
-      font-size: 14px;
-      color: white;
-      opacity: 0.8;
-    }
-    .footer a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .footer a:hover {
-      text-decoration: underline;
-    }
-    .quick-links {
-      position: fixed;
-      top: 10px;
-      right: 10px;
-      display: flex;
-      flex-direction: column;
-    }
-    .quick-links a {
-      text-decoration: none;
-      font-size: 24px;
-      margin: 5px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Películas Hub</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+/* FONDO RGB */
+
+body{
+
+font-family:Segoe UI,Arial;
+min-height:100vh;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+color:black;
+
+background: linear-gradient(
+45deg,
+#ff0000,
+#ff7300,
+#fffb00,
+#48ff00,
+#00ffd5,
+#002bff,
+#7a00ff,
+#ff00c8
+);
+
+background-size:600% 600%;
+animation:rgbFlow 30s ease infinite;
+
+}
+
+@keyframes rgbFlow{
+
+0%{background-position:0% 0%;}
+25%{background-position:100% 0%;}
+50%{background-position:100% 100%;}
+75%{background-position:0% 100%;}
+100%{background-position:0% 0%;}
+
+}
+
+/* BORROSO */
+
+body::before{
+
+content:"";
+position:fixed;
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+background:inherit;
+
+filter:blur(120px);
+
+z-index:-1;
+
+}
+
+/* CONTENEDOR */
+
+.container{
+
+width:95%;
+max-width:1000px;
+
+backdrop-filter:blur(25px);
+background:rgba(255,255,255,.25);
+
+border-radius:25px;
+padding:30px;
+
+border:1px solid rgba(0,0,0,.2);
+
+box-shadow:0 20px 60px rgba(0,0,0,.4);
+
+}
+
+/* LOGO */
+
+.logo{
+text-align:center;
+margin-bottom:15px;
+}
+
+.logo img{
+width:90px;
+border-radius:50%;
+}
+
+/* BUSCADOR */
+
+.searchBox{
+text-align:center;
+margin-bottom:20px;
+}
+
+.search-input{
+
+width:70%;
+padding:14px;
+
+border-radius:20px;
+border:none;
+
+background:rgba(255,255,255,.7);
+
+color:black;
+
+font-weight:bold;
+
+}
+
+.search-input::placeholder{
+color:#333;
+}
+
+.search-button{
+
+margin-left:10px;
+
+padding:12px 20px;
+
+border-radius:20px;
+border:none;
+
+background:rgba(255,255,255,.6);
+
+color:black;
+font-weight:bold;
+
+cursor:pointer;
+
+}
+
+/* RESULTADO */
+
+.result{
+
+display:flex;
+flex-direction:column;
+align-items:center;
+
+gap:20px;
+
+}
+
+/* POSTER */
+
+.poster img{
+
+width:180px;
+border-radius:12px;
+
+box-shadow:0 10px 30px rgba(0,0,0,.5);
+
+}
+
+.noPoster{
+font-size:70px;
+}
+
+/* INFO */
+
+.info{
+
+max-width:500px;
+text-align:center;
+
+line-height:1.5;
+
+}
+
+/* TRAILER */
+
+.trailer{
+margin-top:10px;
+}
+
+.trailer a{
+
+background:red;
+
+padding:8px 15px;
+
+border-radius:10px;
+
+color:white;
+
+text-decoration:none;
+
+font-weight:bold;
+
+}
+
+/* PLATAFORMAS */
+
+.platforms{
+
+display:none;
+margin-top:20px;
+
+}
+
+.button{
+
+display:inline-block;
+
+padding:10px 15px;
+margin:5px;
+
+border-radius:14px;
+
+background:rgba(255,255,255,.6);
+
+border:1px solid rgba(0,0,0,.3);
+
+color:black;
+
+text-decoration:none;
+font-weight:bold;
+
+transition:.2s;
+
+}
+
+.button:hover{
+
+background:rgba(255,255,255,.9);
+
+transform:scale(1.05);
+
+}
+
+/* FOOTER */
+
+.footer{
+
+position:fixed;
+
+bottom:10px;
+right:15px;
+
+font-size:14px;
+
+opacity:.9;
+
+}
+
+/* PC HORIZONTAL */
+
+@media (min-width:700px){
+
+.result{
+
+flex-direction:row;
+
+align-items:flex-start;
+
+}
+
+.poster img{
+width:260px;
+}
+
+.info{
+text-align:left;
+}
+
+}
+
+</style>
 </head>
+
 <body>
-  <div class="quick-links">
-    <a href="https://gx.cuevana3.vip/">🔵</a>
-    <a href="https://wvw.pelisplus.in/">🔴</a>
-    <a href="https://www.cinecalidad.rs/">🟢</a>
-    <a href="https://seriesflix.onl/">🟣</a>
-    <a href="https://ww1.pelis24.blog/">🟠</a>
-    <a href="https://pelispedia.mov/">🟤</a>
-    <a href="https://pelisjuanita.com/">🌸</a>
-  </div>
 
-  <h1><span style="color: white;">🎬 Elige tu plataforma de películas 🍿</span></h1>
-  <div class="search-container">
-    <input type="text" id="search" class="search-input" placeholder="🔍 Buscar película...">
-  </div>
+<div class="container">
 
-  <a onclick="searchMovie('https://gx.cuevana3.vip/?s=')" class="button cuevana">🔵 Cuevana</a>
-  <a onclick="searchMovie('https://wvw.pelisplus.in/?s=')" class="button pelisplus">🔴 PelisPlus</a>
-  <a onclick="searchMovie('https://www.cinecalidad.rs/?s=')" class="button cinecalidad">🟢 Cine Calidad</a>
-  <a onclick="searchMovie('https://seriesflix.onl/?s=')" class="button seriesflix">🟣 SeriesFlix</a>
-  <a onclick="searchMovie('https://ww1.pelis24.blog/?s=')" class="button pelis24">🟠 Pelis24</a>
-  <a onclick="searchMovie('https://pelispedia.mov/?s=')" class="button pelispedia">🟤 Pelispedia</a>
-  <a onclick="searchMovie('https://pelisjuanita.com/?s=')" class="button pelisjuanita">🌸 Pelis Juanita</a>
+<div class="logo" id="logo">
+<img src="https://yt3.ggpht.com/UqD2bWLwEORv12B3AGF7fM7icS3pTPHvhRdSSMY3RKjJyAZwFo_X-QbDgQ6CugXBPfNx7fQn9Q=s108-c-k-c0x00ffffff-no-rj">
+</div>
 
-  <div class="footer">
-    <a href="https://github.com/Byizanfancade/pelisi" target="_blank">by Izan Fancade</a>
-  </div>
+<div class="searchBox">
 
-  <script>
-    function searchMovie(baseURL) {
-      let query = document.getElementById('search').value.trim();
-      if (query) {
-        window.open(baseURL + encodeURIComponent(query), '_blank');
-      } else {
-        alert('⚠️ Ingresa algo para buscar');
-      }
-    }
+<h2>🎬 ¿Qué película quieres ver?</h2>
 
-    let buttons = document.querySelectorAll('.button');
-    let selectedIndex = 0;
+<input id="search" class="search-input" placeholder="Escribe la película">
 
-    function updateSelection() {
-      buttons.forEach(btn => btn.classList.remove('selected'));
-      buttons[selectedIndex].classList.add('selected');
-    }
+<button class="search-button" onclick="buscar()">Buscar</button>
 
-    document.addEventListener('keydown', function(event) {
-      if (event.key === 'ArrowDown') {
-        selectedIndex = (selectedIndex + 1) % buttons.length;
-        updateSelection();
-      } else if (event.key === 'ArrowUp') {
-        selectedIndex = (selectedIndex - 1 + buttons.length) % buttons.length;
-        updateSelection();
-      } else if (event.key === 'Enter') {
-        buttons[selectedIndex].click();
-      }
-    });
+</div>
 
-    updateSelection();
-  </script>
+<div class="result">
+
+<div class="poster" id="posterBox"></div>
+
+<div class="info">
+
+<div id="movieInfo"></div>
+
+<div class="trailer" id="trailerBox"></div>
+
+<div class="platforms" id="platforms">
+
+<h3>Ver en:</h3>
+
+<a onclick="openSite('https://cuevanapro.org/search?s=')" class="button">🔵 Cuevana</a>
+<a onclick="openSite('https://wvw.pelisplus.in/?s=')" class="button">🔴 PelisPlus</a>
+<a onclick="openSite('https://www.cinecalidad.rs/?s=')" class="button">🟢 CineCalidad</a>
+<a onclick="openSite('https://la.movie/search/')" class="button">🟣 La Movie</a>
+<a onclick="openSite('https://ww1.pelis24.blog/?s=')" class="button">🟠 Pelis24</a>
+<a onclick="openSite('https://pelispedia.mov/?s=')" class="button">🟤 Pelispedia</a>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="footer">
+by izanfancade
+</div>
+
+<script>
+
+let movie="";
+
+async function buscar(){
+
+movie=document.getElementById("search").value.trim();
+
+if(movie===""){
+alert("Escribe una película");
+return;
+}
+
+document.getElementById("logo").style.display="none";
+
+let api="https://api.themoviedb.org/3/search/movie?api_key=37ef42ac25d3e550e15acce0832f1dcd&query="+encodeURIComponent(movie);
+
+let res=await fetch(api);
+let data=await res.json();
+
+let posterBox=document.getElementById("posterBox");
+let info=document.getElementById("movieInfo");
+let trailerBox=document.getElementById("trailerBox");
+
+posterBox.innerHTML="";
+info.innerHTML="";
+trailerBox.innerHTML="";
+
+if(data.results.length>0){
+
+let m=data.results[0];
+
+if(m.poster_path){
+
+posterBox.innerHTML=`<img src="https://image.tmdb.org/t/p/w500${m.poster_path}">`;
+
+}else{
+
+posterBox.innerHTML=`<div class="noPoster">❌</div>`;
+
+}
+
+info.innerHTML=`
+<b>${m.title}</b><br>
+📅 ${m.release_date || "Fecha desconocida"}<br><br>
+${m.overview || "Sin descripción"}
+`;
+
+let trailerQuery=encodeURIComponent(m.title+" trailer");
+
+trailerBox.innerHTML=`
+<a target="_blank" href="https://www.youtube.com/results?search_query=${trailerQuery}">
+▶ Ver trailer
+</a>
+`;
+
+}else{
+
+posterBox.innerHTML=`<div class="noPoster">❌</div>`;
+info.innerHTML="No se encontró información.";
+
+}
+
+document.getElementById("platforms").style.display="block";
+
+}
+
+function openSite(baseURL){
+
+window.open(baseURL + encodeURIComponent(movie),'_blank');
+
+}
+
+</script>
+
 </body>
 </html>
